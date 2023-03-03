@@ -21,3 +21,16 @@ services:
     volumes:
       - "./app/flask:/app"
     restart: always
+  frontend-admin:
+    image: ${ECR_REGISTRY}/${ECR_FRONTEND_ADMIN_REPOSITORY}:${IMAGE_TAG}
+    build:
+      context: ./app/frontend-admin
+      target: runner
+    tty: true
+    command: yarn dev
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: development
+    volumes:
+      - ./app/frontend-admin:/app
