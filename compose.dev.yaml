@@ -3,6 +3,7 @@ version: '3.9'
 services:
   web:
     build:
+      image: ${ECR_REGISTRY}/${ECR_REPOSITORY}:web_${IMAGE_TAG}
       context: ./app/web
       dockerfile: Dockerfile
     ports:
@@ -12,6 +13,7 @@ services:
     restart: always
   flask:
     build:
+      image: ${ECR_REGISTRY}/${ECR_REPOSITORY}:flask_${IMAGE_TAG}
       context: ./app/flask
       dockerfile: Dockerfile
     expose:
