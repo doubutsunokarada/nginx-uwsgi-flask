@@ -19,3 +19,17 @@ services:
     volumes:
       - "./app/flask:/app"
     restart: always
+    depends_on:
+      - frontend-admin
+  frontend-admin:
+    build:
+      context: ./app/frontend-admin
+      target: runner
+    tty: true
+    command: yarn dev
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: development
+    volumes:
+      - ./app/frontend-admin:/app
