@@ -1,0 +1,12 @@
+FROM python:3.9
+
+WORKDIR /app
+ENV FLASK_APP=app
+
+COPY ./requirements.txt ./
+
+RUN apt update \
+    && apt install -y gcc
+RUN pip install -r requirements.txt
+
+ENTRYPOINT [ "uwsgi", "--ini", "/app/uwsgi.ini" ]

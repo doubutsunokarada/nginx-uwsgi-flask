@@ -1,0 +1,21 @@
+version: '3.9'
+
+services:
+  web:
+    build:
+      context: ./app/web
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - flask
+    restart: always
+  flask:
+    build: 
+      context: ./app/flask
+      dockerfile: Dockerfile
+    expose:
+      - 5000
+    volumes:
+      - "./app/flask:/app"
+    restart: always
