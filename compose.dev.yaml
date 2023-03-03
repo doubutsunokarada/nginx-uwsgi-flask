@@ -27,10 +27,10 @@ services:
       context: ./app/frontend-admin
       target: runner
     tty: true
-    command: yarn dev
+    command: yarn build && yarn start
     ports:
       - "3000:3000"
     environment:
-      NODE_ENV: development
+      NODE_ENV: production
     volumes:
       - ./app/frontend-admin:/app
