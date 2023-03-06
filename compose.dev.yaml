@@ -11,7 +11,7 @@ services:
     depends_on:
       - flask
     restart: always
-  flask:
+  uwsgi-flask:
     image: ${ECR_REGISTRY}/${ECR_REPOSITORY}:flask_${IMAGE_TAG}
     build:
       context: ./app/flask

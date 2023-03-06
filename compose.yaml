@@ -10,7 +10,7 @@ services:
     depends_on:
       - flask
     restart: always
-  flask:
+  uwsgi-flask:
     build:
       context: ./app/flask
       dockerfile: Dockerfile
