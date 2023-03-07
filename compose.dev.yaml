@@ -15,7 +15,7 @@ services:
     image: ${ECR_REGISTRY}/${ECR_REPOSITORY}:flask_${IMAGE_TAG}
     build:
       context: ./app/flask
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
     expose:
       - 5000
     volumes:
