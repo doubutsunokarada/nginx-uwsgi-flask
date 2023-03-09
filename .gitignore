@@ -1,2 +1,2 @@
-app/flask/__pycache__
+__pycache__/
 app/flask/uwsgi.log

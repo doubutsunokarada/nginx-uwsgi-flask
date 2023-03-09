@@ -1,2 +1,3 @@
 Dockerfile*
 uwsgi.log
+*/__pycache__
