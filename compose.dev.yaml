@@ -21,3 +21,9 @@ services:
     volumes:
       - "./app/flask:/app"
     restart: always
+  frontend-admin:
+    image: ${ECR_REGISTRY}/${ECR_REPOSITORY}:frontend_admin_${IMAGE_TAG}
+    build:
+      context: ./frontend-admin
+      dockerfile: Dockerfile
+      target: dev_runner
