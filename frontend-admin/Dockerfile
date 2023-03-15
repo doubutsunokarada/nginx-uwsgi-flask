@@ -4,19 +4,19 @@ WORKDIR /app
 COPY package.json yarn.lock ./
 RUN yarn install --frozen-lockfile
 
-FROM node:16-alpine AS builder
+FROM node:16-alpine AS dev_builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
 ENV NEXT_TELEMETRY_DISABLED 1
+ENV APP_ENV development
 RUN yarn build
 
-FROM node:16-alpine AS dev_runner
+FROM node:16-alpine AS runner
 WORKDIR /app
 
 ENV NODE_ENV production
-ENV APP_ENV development
 
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs

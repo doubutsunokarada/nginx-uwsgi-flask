@@ -26,4 +26,4 @@ services:
     build:
       context: ./frontend-admin
       dockerfile: Dockerfile
-      target: dev_runner
+      target: dev_builder
