@@ -23,6 +23,8 @@ RUN adduser --system --uid 1001 nextjs
 
 COPY --from=dev_builder /app/public ./public
 COPY --from=dev_builder /app/package.json ./package.json
+
+COPY --from=dev_builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=dev_builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
 USER nextjs
@@ -30,4 +32,4 @@ EXPOSE 3000
 
 ENV PORT 3000
 
-CMD ["yarn", "start"]
+CMD ["node", "server.js"]

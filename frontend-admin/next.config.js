@@ -3,6 +3,7 @@ loadEnv(process.env.APP_ENV);
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  output: "standalone",
 };
 
 module.exports = nextConfig;
