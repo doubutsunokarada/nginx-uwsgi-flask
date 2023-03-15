@@ -13,7 +13,7 @@ ENV NEXT_TELEMETRY_DISABLED 1
 ENV APP_ENV development
 RUN yarn build
 
-FROM node:16-alpine AS runner
+FROM node:16-alpine AS dev_runner
 WORKDIR /app
 
 ENV NODE_ENV production
@@ -21,11 +21,11 @@ ENV NODE_ENV production
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
-COPY --from=builder /app/public ./public
-COPY --from=builder /app/package.json ./package.json
+COPY --from=dev_builder /app/public ./public
+COPY --from=dev_builder /app/package.json ./package.json
 
-COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+COPY --from=dev_builder --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=dev_builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
 USER nextjs
 EXPOSE 3000
